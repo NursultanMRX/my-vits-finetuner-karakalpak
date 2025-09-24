@@ -1,0 +1,38 @@
+{
+    "model_name_or_path": "./mms-tts-kaa-with-discriminator",
+    "dataset_name": "nickoo004/karakalpak-tts-speaker1",
+    "output_dir": "./mms-tts-kaa-finetuned-speaker1",
+    "overwrite_output_dir": true,
+    "push_to_hub": true,
+    "hub_model_id": "nickoo004/mms-tts-kaa-finetuned-speaker1",
+
+    "audio_column_name": "audio_file",
+    "text_column_name": "text",
+    "speaker_id_column_name": "speaker_name",
+    "filter_on_speaker_id": "Speaker_1",
+    "override_speaker_embeddings": true,
+
+    "max_duration_in_seconds": 20.0,
+    "min_duration_in_seconds": 1.0,
+
+    "num_train_epochs": 150,
+    "per_device_train_batch_size": 4,
+    "learning_rate": 2e-5,
+    "warmup_ratio": 0.01,
+    "gradient_accumulation_steps": 1,
+    "gradient_checkpointing": false,
+    "group_by_length": false,
+
+    "do_train": true,
+    "do_eval": false,
+
+    "weight_disc": 3.0,
+    "weight_fmaps": 1.0,
+    "weight_gen": 1.0,
+    "weight_kl": 1.5,
+    "weight_duration": 1.0,
+    "weight_mel": 35.0,
+
+    "fp16": true,
+    "seed": 42
+}
