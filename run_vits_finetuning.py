@@ -33,7 +33,12 @@ from transformers.feature_extraction_utils import BatchFeature
 from transformers.optimization import get_scheduler
 from transformers.trainer_pt_utils import LengthGroupedSampler
 from transformers.trainer_utils import get_last_checkpoint, is_main_process
-from transformers.utils import send_example_telemetry
+
+# Try to import send_example_telemetry, but it's optional (removed in newer transformers)
+try:
+    from transformers.utils import send_example_telemetry
+except ImportError:
+    send_example_telemetry = None
 from utils import plot_alignment_to_numpy, plot_spectrogram_to_numpy, VitsDiscriminator, VitsModelForPreTraining, VitsFeatureExtractor, slice_segments, VitsConfig, uromanize
 from datasets import Audio
 
@@ -537,7 +542,8 @@ def main():
 
     # Sending telemetry. Tracking the example usage helps us better allocate resources to maintain them. The
     # information sent is the one passed as arguments along with your Python/PyTorch versions.
-    send_example_telemetry("run_vits_finetuning", model_args, data_args)
+    if send_example_telemetry is not None:
+        send_example_telemetry("run_vits_finetuning", model_args, data_args)
 
     # 2. Setup logging
     logging.basicConfig(
