@@ -767,6 +767,10 @@ def main():
     # filter data that is shorter than min_input_length or longer than
     # max_input_length
     def is_audio_in_length_range(length, text):
+        # Agar audio yoki uning ichidagi array bo'sh bo'lsa, bu qatorni tashlab yuboramiz
+        if length is None or "array" not in length:
+            return False
+        
         length_ = len(length["array"])
         return (length_ > min_input_length and length_ < max_input_length) and text is not None
 

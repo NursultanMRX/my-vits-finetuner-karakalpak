@@ -1,16 +1,15 @@
 {
     "model_name_or_path": "./mms-tts-kaa-with-discriminator",
-    "dataset_name": "nickoo004/karakalpak-tts-speaker1",
+    "dataset_name": "./my_local_dataset",
     "output_dir": "./mms-tts-kaa-finetuned-speaker1",
     "overwrite_output_dir": true,
     "push_to_hub": true,
     "hub_model_id": "nickoo004/mms-tts-kaa-finetuned-speaker1",
 
-    "audio_column_name": "audio_file",
+    "audio_column_name": "file_name",
     "text_column_name": "text",
     "speaker_id_column_name": "speaker_name",
     "filter_on_speaker_id": "Speaker_1",
-    "override_speaker_embeddings": true,
 
     "max_duration_in_seconds": 20.0,
     "min_duration_in_seconds": 1.0,
